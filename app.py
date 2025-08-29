@@ -169,31 +169,31 @@ def generate_test_interact():
 #         }), 500
 #
 #
-# @app.route('/api/travel/travel-research-from-summary', methods=['POST'])
-# def generate_plan_from_summary():
-#     """
-#     直接从总结生成攻略（测试用）
-#     """
-#     try:
-#         data = request.get_json()
-#
-#         if not data or 'summary' not in data:
-#             return jsonify({
-#                 "status": "error",
-#                 "message": "缺少必要参数: summary"
-#             }), 400
-#
-#         from utils.travel_plan_generator import plan_generator
-#
-#         result = plan_generator.generate_detailed_plan(data['summary'])
-#
-#         return jsonify(result)
-#
-#     except Exception as e:
-#         return jsonify({
-#             "status": "error",
-#             "message": f"服务器错误: {str(e)}"
-#         }), 500
+@app.route('/api/travel/travel-research-from-summary', methods=['POST'])
+def generate_plan_from_summary():
+    """
+    直接从总结生成攻略（测试用）
+    """
+    try:
+        data = request.get_json()
+
+        if not data or 'summary' not in data:
+            return jsonify({
+                "status": "error",
+                "message": "缺少必要参数: summary"
+            }), 400
+
+        from utils.travel_agent import tavily_agent
+
+        result = tavily_agent.generate_travel_plan(data['summary'])
+
+        return jsonify(result)
+
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": f"服务器错误: {str(e)}"
+        }), 500
 #
 # @app.route('/health', methods=['GET'])
 # def health_check():

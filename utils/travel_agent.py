@@ -62,7 +62,7 @@ class TavilyTravelAgent:
 6. 💰 预算分配建议
 7. ⚠️ 注意事项和实用贴士
 
-请确保信息准确、最新，并且基于2024年的实际情况。
+请确保信息准确、最新，并且基于2025年的实际情况。
 """
 
             result = self.agent.run(query)

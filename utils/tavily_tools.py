@@ -18,7 +18,7 @@ class TavilySearch:
 
         # 获取tavilyKey
         config_more = config_more_manager.get_tavily_config()
-        self.tavily_api_key = tavily_key or config_more.get_tavily_config()
+        self.tavily_api_key = tavily_key or config_more.get('tavily_key')
         self.search_tool = self._create_search_tool()
 
     def _create_search_tool(self) -> Tool:
@@ -47,6 +47,7 @@ class TavilySearch:
             )
 
         except Exception as e:
+            print(self.tavily_api_key)
             print(f"创建Tavily搜索工具失败: {e}")
             return self._create_fallback_tool()
 
