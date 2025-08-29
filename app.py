@@ -62,7 +62,7 @@ def receive_answers():
 def get_history(user_id):
     """获取对话历史"""
     try:
-        history = travel_advisor.conversation_history.get(user_id, [])
+        history = travel_advisor.get_history(user_id)
         return jsonify({
             "status": "success",
             "history": history
@@ -140,60 +140,60 @@ def generate_test_interact():
             "message": f"服务器错误: {str(e)}"
         }), 500
 
+
+# @app.route('/api/travel/travel-research', mxethods=['POST'])
+# def generate_travel_plan():
+#     """
+#     生成旅行攻略接口
+#     """
+#     try:
+#         data = request.get_json()
 #
-# # @app.route('/api/travel/travel-research', mxethods=['POST'])
-# # def generate_travel_plan():
-# #     """
-# #     生成旅行攻略接口
-# #     """
-# #     try:
-# #         data = request.get_json()
-# #
-# #         if not data or 'user_id' not in data:
-# #             return jsonify({
-# #                 "status": "error",
-# #                 "message": "缺少必要参数: user_id"
-# #             }), 400
-# #
-# #         user_id = data['user_id']
-# #
-# #         # 生成攻略
-# #         result = travel_advisor.generate_travel_plan(user_id)
-# #
-# #         return jsonify(result)
-# #
-# #     except Exception as e:
-# #         return jsonify({
-# #             "status": "error",
-# #             "message": f"服务器错误: {str(e)}"
-# #         }), 500
-# #
-# #
-# # @app.route('/api/travel/travel-research-from-summary', methods=['POST'])
-# # def generate_plan_from_summary():
-# #     """
-# #     直接从总结生成攻略（测试用）
-# #     """
-# #     try:
-# #         data = request.get_json()
-# #
-# #         if not data or 'summary' not in data:
-# #             return jsonify({
-# #                 "status": "error",
-# #                 "message": "缺少必要参数: summary"
-# #             }), 400
-# #
-# #         from utils.travel_plan_generator import plan_generator
-# #
-# #         result = plan_generator.generate_detailed_plan(data['summary'])
-# #
-# #         return jsonify(result)
-# #
-# #     except Exception as e:
-# #         return jsonify({
-# #             "status": "error",
-# #             "message": f"服务器错误: {str(e)}"
-# #         }), 500
+#         if not data or 'user_id' not in data:
+#             return jsonify({
+#                 "status": "error",
+#                 "message": "缺少必要参数: user_id"
+#             }), 400
+#
+#         user_id = data['user_id']
+#
+#         # 生成攻略
+#         result = travel_advisor.generate_travel_plan(user_id)
+#
+#         return jsonify(result)
+#
+#     except Exception as e:
+#         return jsonify({
+#             "status": "error",
+#             "message": f"服务器错误: {str(e)}"
+#         }), 500
+#
+#
+# @app.route('/api/travel/travel-research-from-summary', methods=['POST'])
+# def generate_plan_from_summary():
+#     """
+#     直接从总结生成攻略（测试用）
+#     """
+#     try:
+#         data = request.get_json()
+#
+#         if not data or 'summary' not in data:
+#             return jsonify({
+#                 "status": "error",
+#                 "message": "缺少必要参数: summary"
+#             }), 400
+#
+#         from utils.travel_plan_generator import plan_generator
+#
+#         result = plan_generator.generate_detailed_plan(data['summary'])
+#
+#         return jsonify(result)
+#
+#     except Exception as e:
+#         return jsonify({
+#             "status": "error",
+#             "message": f"服务器错误: {str(e)}"
+#         }), 500
 #
 # @app.route('/health', methods=['GET'])
 # def health_check():
